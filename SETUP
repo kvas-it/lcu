@@ -1,0 +1,8 @@
+#!/bin/bash
+
+DIRNAME=$(realpath $(dirname $0))
+
+for script in $DIRNAME/*.sh; do
+    echo linking $script to ~/bin/$(basename $script)
+    ln -s $script ~/bin/$(basename $script)
+done
