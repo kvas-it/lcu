@@ -1,4 +1,6 @@
-# Enable 4k mode on LG display.
+#!/bin/bash
+#
+# Set 4k mode on HDMI-1 display.
 
 if T=$(readlink $0); then
     REAL0=$T
@@ -8,6 +10,15 @@ fi
 
 ROOT=$(realpath $(dirname $REAL0))
 SETMODE=$ROOT/setmode.sh
+
+# Reduced blanking from cvt -r with frequency changed to be at HDMI 1.4 maximum.
+# This gives 33.7Hz refresh rate and feels better than native mode.
+$SETMODE HDMI-1 3840x2160R 300.00 3840 3888 3920 4000 2160 2163 2168 2222 +hsync -vsync
+
+# Make HDMI-1 primary screen.
+xrandr --output HDMI-1 --primary
+
+# Old versions of the mode below.
 
 # From https://forums.puri.sm/t/how-i-set-up-my-3840x2160-monitor-via-hdmi/2607
 # xrandr --newmode 3840x2160-knoqi 262.750000 3840 3888 3920 4000 2160 2163 2167 2191 +HSync -VSync
@@ -27,6 +38,3 @@ SETMODE=$ROOT/setmode.sh
 # xrandr --output HDMI-1 --mode "3840x2160_30"
 # xrandr --output HDMI-1 --left-of eDP-1
 
-# Reduced blanking from cvt -r with frequency changed to be at HDMI 1.4 maximum.
-# This gives 33.7Hz refresh rate and feels better than native mode.
-$SETMODE HDMI-1 3840x2160R 300.00 3840 3888 3920 4000 2160 2163 2168 2222 +hsync -vsync

@@ -1,4 +1,6 @@
 #!/bin/bash
+#
+# Link all the scripts here to ~/bin/
 
 DIRNAME=$(realpath $(dirname $0))
 
