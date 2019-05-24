@@ -17,3 +17,6 @@ $SETMODE HDMI-1 2560x1440 241.5 2560 2608 2640 2720 1440 1443 1448 1481 +hsync -
 
 # Make HDMI-1 primary screen.
 xrandr --output HDMI-1 --primary
+
+$ROOT/kbdmap.sh
+$ROOT/touchpad.sh
